@@ -57,7 +57,7 @@ public class Main {
 					boolean currentUser = UserService.login(id, password);
 					if (currentUser) {
 
-						return false;
+						return true;
 					} else {
 						System.out.println("Login failed. Invalid ID or password.");
 						loginAttempts++;
