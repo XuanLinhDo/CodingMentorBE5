@@ -50,7 +50,7 @@ public class Main {
 	}
 
 	public static Employee getEmployeeByDepartmentCode(String loggedInToGetDepartmentCode, String departmentCode) {
-		// get department code
+		
 		switch (loggedInToGetDepartmentCode) {
 		case "HR":
 			return HREmployee.findEmployeeInHR(departmentCode);
