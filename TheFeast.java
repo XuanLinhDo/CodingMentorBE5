@@ -6,14 +6,14 @@ public class TheFeast {
 		int c = 2;
 		// b is the number of chocolate bar received
 		int b = n / c;
+		// m is the number of wrappers
+		int m = b;
 		int totalChocoBars = b;
-		while (b >= 2) {
-			// m is the number of wrappers
-			int m = b;
+		while (m >= 2) {
 			int freeChocoBars = m / 2;
 			totalChocoBars += freeChocoBars;
 			m = m % 2; // check the number of wrappers after exchange
-			b = m + freeChocoBars;
+			m += freeChocoBars;
 		}
 		System.out.println("The total chocolate bars: " + totalChocoBars);
 	}
