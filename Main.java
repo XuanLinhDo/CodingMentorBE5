@@ -39,6 +39,8 @@ public class Main {
 		List<Course> courseList = CourseService.getAllCourses();
 		System.out.println("List of Courses:");
 		do {
+			System.out.println("");
+			System.out.println("");
 			for (Course course : courseList) {
 				System.out.println("ID: " + course.getId() + " || Course: " + course.getName());
 			}
