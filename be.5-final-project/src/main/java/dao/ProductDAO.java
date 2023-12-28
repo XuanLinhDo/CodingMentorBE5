@@ -36,7 +36,30 @@ public class ProductDAO {
 		return list;
 
 	}
+        public List<Product> getOldProducts() throws SQLException {
+		Connection connection = DBConnection.makeConnection();
 
+		Statement stmt = connection.createStatement();
+		String SQL = "SELECT * FROM products WHERE is_new = 0";
+
+		ResultSet rs = stmt.executeQuery(SQL);
+
+		List<Product> list = new ArrayList<Product>();
+
+		while (rs.next()) {
+			int id = rs.getInt("id");
+			String name = rs.getString("name");
+			int price = rs.getInt("price");
+			String imgName = rs.getString("img_name");
+			boolean isNew = rs.getBoolean("is_new");
+			int quantity = rs.getInt("quantity");
+			String description = rs.getString("description");
+			Product product = new Product(id, name, price, imgName, isNew, quantity, description);
+			list.add(product);
+		}
+		return list;
+
+	}
 	public List<Product> getProductById(String productId) throws SQLException {
 		Connection connection = DBConnection.makeConnection();
 		String SQL = "SELECT * FROM products WHERE id = ?";
