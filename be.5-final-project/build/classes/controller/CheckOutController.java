@@ -39,7 +39,7 @@ public class CheckOutController extends HttpServlet {
 
 		try {
 			String orderId = request.getParameter("orderId");
-
+			HttpSession session = request.getSession();
 			if (orderId != null) {
 				
 				OrderDAO orderDAO = new OrderDAO();
@@ -58,8 +58,8 @@ public class CheckOutController extends HttpServlet {
 
 					((Order) order).setTotalPrice(totalPrice);
 
-					request.setAttribute("orderDetails", orderDetails);
-					request.setAttribute("order", order);
+					session.setAttribute("orderDetails", orderDetails);
+					session.setAttribute("order", order);
 					request.getRequestDispatcher("/checkout.jsp").forward(request, response);
 				} else {
 					response.sendRedirect("");
