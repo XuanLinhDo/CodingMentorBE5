@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function loadProductsByCategory(categoryId) {
+                  const xhttp = new XMLHttpRequest();
+
+                  xhttp.onload = function() {
+                   
+                   var json = JSON.parse(xhttp.responseText);
+                   
+                   var productsDiv = document.getElementById("products");
+                   
+                   json.forEach(element => {
+                    var productsDiv = document.createElement('div');
+                    productsDiv.innerHTML = element.name
+                    productsDiv.appendChild(productsDiv);
+                       
+                   })
+                    }
+                  xhttp.open("GET", "http://localhost:8080/be.5-final-project/ProductWebService?categoryId" + categoryId);
+                  xhttp.send();
+                }
+            function loadCategories() {
+                xhttp.onload = function() {
+                   
+                   var json = JSON.parse(xhttp.responseText);
+                   
+                   var categoriesDiv = document.getElementById("categories");
+                   
+                   json.forEach(element => {
+                    var categoriesDiv = document.createElement('div');
+                    categoriesDiv.innerHTML = element.name
+                    categoriesDiv.addEventListener("click", function() {
+                     loadProductsByCategory(element.id);
+                      });
+                    categoriesDiv.appendChild(categoriesDiv);
+                       
+                   })
+                    }
+                  xhttp.open("GET", "http://localhost:8080/be.5-final-project/CategoryWebService");
+                  xhttp.send();
+            }
+
+            document.addEventListener("DOMContentLoaded", function() {
+            loadCategories();
+            });
+            </script>
+    </head>
+    <body>
+        Categories:
+  <br>
+  <div id="categories"></div>
+
+  Products:
+  <br>
+  <div id="products"></div>
+    </body>
+</html>
